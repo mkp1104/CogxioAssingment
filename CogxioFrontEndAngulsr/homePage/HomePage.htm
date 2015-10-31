@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Live Feed Cogxio</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css" />
+<!--   <link href="css/demo.css" rel="stylesheet" type="text/css" /> -->
+<!--   <link href="css/bootstrap3.2.1.min.css" rel="stylesheet" type="text/css" /> -->
+</head>
+<body>
+<div ng-app="validationApp" ng-controller="mainController">
+<!--test-start-->
+<div flow-init="{target: '/upload'}"
+     flow-files-submitted="$flow.upload()"
+     flow-file-success="$file.msg = $message">
+
+  <input type="file" flow-btn/>
+  Input OR Other element as upload button
+  <span class="btn" flow-btn>Upload File</span>
+
+  <table>
+    <tr ng-repeat="file in $flow.files">
+        <td>{{$index+1}}</td>
+        <td>{{file.name}}</td>
+        <td>{{file.msg}}</td>
+    </tr>
+  </table>
+</div>
+<!-- <div flow-init>
+<input type="file" accept="image/*" multiple
+    image="images"
+    resize-max-height="300"
+    resize-max-width="250"
+    resize-quality="0.7" />
+Originals <img ng-repeat="img in images" ng-src="{{img.url}}" type="{{img.file.type}}" />
+Resized <img ng-repeat="img in images" ng-src="{{img.resized.dataURL}}" />
+
+<tr ng-repeat="file in $flow.files">
+    <td>{{$index+1}}</td>
+    <td>{{file.name}}</td>
+</tr>
+</div> -->
+	<div class="form-group">
+	<button type="button" class="btn btn-default">
+	<span class="glyphicon glyphicon-upload" aria-hidden="true"></span> upload image/videos
+	</button>
+	<button type="button" class="btn btn-default" ng-click="submitStatus(StatusData)">
+	<span class="glyphicon glyphicon-send" aria-hidden="true"></span> Update Status
+	</button>
+	<button type="button" class="btn btn-default">
+	<span class="glyphicon glyphicon-link" aria-hidden="true"></span> share link
+	</button>
+<!--test-end-->
+		</br></br>
+		<!-- <b>Update Status:<b><b>upload Image/videos<b> -->
+			<textarea name="comments" ng-model="StatusData.comments" required class="form-control" rows="5"></textarea>
+		</br>	
+			<div  ng-show="IsErrorInProceesing" class="alert alert-danger" role="alert">
+				  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					Error in Processing Please submit post again!!!
+			</div>
+			
+			<div  ng-show="IsStatusSubmitted" class="alert alert-info" role="alert">
+				  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					{{StatusDataSubmitted.comments}}
+			</div>
+		<!-- <div class="progress">
+		  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+			<span class="sr-only">45% Complete</span>
+		  </div>
+		</div> -->
+		</div>
+    <!-- =================================================================== -->
+    <!-- FORM ============================================================== -->
+    <!-- =================================================================== -->
+    <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+    <script src="bower_components/angular/angular-resource.js" type="text/javascript"></script>
+    <script src="bower_components/angular-route/angular-route.js" type="text/javascript"></script>
+    <script src="js1/app.js" type="text/javascript"></script>
+</div>
+  <br />
+</body>
+</html>
