@@ -5,7 +5,8 @@ angular.module( 'sample', [
   'homePage',
   'PostFeedServicesModule',
   'login',
-  'auth0'
+  'auth0',
+  'angularFileUpload'
 ])
 .config( function ($urlRouterProvider, authProvider, $httpProvider) {
 
