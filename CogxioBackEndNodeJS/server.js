@@ -100,20 +100,20 @@ router.route('/postStatusData')
 	  });
 
 	}).get(function(req, res) {
-		userFeedData.find(function(err, userFeedData) {
+		UserFeedData.find(function(err, UserFeedData) {
 			if (err)
 				res.send(err);
 
-			res.json(userFeedData);
+			res.json(UserFeedData);
 		});
 	});
 	//get all user Form Data!!!!
 	router.route('/getAllUserStatusData')
 	.get(function(req,res){
-	userFeedData.find({},function(error,allUsers){
+	UserFeedData.find({},function(error,UserFeedData){
 	if(error)
 	res.send(error);
-	res.json(allUsers);
+	res.json(UserFeedData);
 	});
 	});
 	
@@ -121,7 +121,7 @@ router.route('/getAllUserStatusData/:user_id')
 
 // get the userFeedData with that id (accessed at GET http://localhost:8080/api/userFeedData/:user_id)
 	.get(function (req, res) {
-	  userFeedData.findById(req.params.user_id, function (err, allUsers) {
+	  UserFeedData.findById(req.params.user_id, function (err, allUsers) {
 	    if (err)
 	      res.send(err);
 	    res.json(allUsers);

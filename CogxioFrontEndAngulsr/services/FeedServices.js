@@ -11,7 +11,7 @@ angular.module('PostFeedServicesModule', ['ngResource'])
 		getAlluserStatusData: function () {
 		return $http({
         method: 'GET',
-        url: 'http://localhost:57370/api/getAllUserStatusData'
+        url: 'http://localhost:8085/api/getAllUserStatusData'
         })
 		}
       }

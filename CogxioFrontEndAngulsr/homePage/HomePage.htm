@@ -24,9 +24,29 @@
 					Error in Processing Please submit post again!!!
 			</div>
 			
-			<div  ng-show="IsStatusSubmitted" class="alert alert-info" role="alert">
-				  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					{{StatusDataSubmitted.comments}}
+			<div  ng-show="IsGetAllUserStatusData" class="alert alert-info" role="alert">
+					<!-- <span class="glyphicon glyphicon-user" ng-repeat="item in AllComments" aria-hidden="true"></span> -->
+					<!-- {{item.comment}} -->
+					<table class="table">
+                        <thead>
+                            <tr>	
+								<th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in AllComments">
+                                <td>
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true">{{item.comments}}</span>
+									
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+				</div>
+			
+			<div  ng-show="!IsGetAllUserStatusData" class="alert alert-danger" role="alert">
+				  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+					Error in getting All Status Posted from you, Please try again!!!
 			</div>
 	</div>	
 <!--test-start-->

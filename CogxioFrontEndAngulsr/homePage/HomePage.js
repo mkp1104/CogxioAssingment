@@ -10,9 +10,21 @@
     });
 })
 .controller('mainController', function mainController($scope, PostFeedService) {
+	$scope.IsGetAllUserStatusData = true;
+	$scope.AllComments = [];
+	PostFeedService.getAlluserStatusData().then(function(response){
+				if(response.data){
+					angular.forEach(response.data, function(value, key) {
+					$scope.AllComments.push(value);
+					console.log(key + ': ' + value);
+					});
+				}else{
+				$scope.IsGetAllUserStatusData = false;
+				}
+	});
 	$scope.IsErrorInProceesing = false;
 	$scope.IsStatusSubmitted = false;
-	$scope.StatusData={};
+	$scope.StatusData={comments : []};
 	$scope.StatusDataSubmitted={};
     $scope.submitStatus = function(StatusData){
 	if(StatusData.comments){
@@ -24,6 +36,15 @@
 			$scope.StatusDataSubmitted=$scope.StatusData;
 			$scope.StatusData={};
 			$scope.IsErrorInProceesing=false;
+			PostFeedService.getAlluserStatusData().then(function(response){
+				if(response.data){
+					$scope.AllComments.unshift(response.data[response.data.length-1]);
+					// console.log(key + ': ' + value);	
+					$scope.IsGetAllUserStatusData = true;
+				}else{
+				$scope.IsGetAllUserStatusData = false;
+				}
+				});
 			$scope.IsStatusSubmitted = true;
 		} }, function(error){
 		$scope.IsErrorInProceesing=true;
